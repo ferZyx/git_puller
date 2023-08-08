@@ -9,7 +9,7 @@ const router = express.Router()
 app.use(express.json());
 app.use("/pull", router)
 
-app.post('/ksu-helper', (req, res) => {
+router.post('/ksu-helper', (req, res) => {
     // Выполните необходимые команды для обновления и перезапуска приложения
     exec('cd /var/www/ksu-helper/ && git pull origin main', (err, stdout, stderr) => {
         if (err) {
