@@ -2,12 +2,16 @@ import "dotenv/config";
 import "winston-mongodb"
 import winston from "winston"
 import {MongoClient} from "mongodb";
+import CustomTransport from "./customTransport.js";
+
+
 
 const log = winston.createLogger({
     level: 'debug',
     transports: [
         // write errors to console too
         new winston.transports.Console({format: winston.format.simple(), level:'debug'}),
+        new CustomTransport({level:"warn"}),
     ],
 });
 
@@ -23,6 +27,5 @@ const transportOptions = {
 };
 
 log.add(new winston.transports.MongoDB(transportOptions));
-
 
 export default log
